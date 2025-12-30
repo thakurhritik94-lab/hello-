@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Bye Bye 2025</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  height: 100vh;
+  overflow: hidden;
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  transition: background 1.5s ease;
+}
+
+/* 🌌 stars */
+.star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: white;
+  opacity: 0.7;
+  animation: twinkle 3s infinite ease-in-out;
+}
+
+@keyframes twinkle {
+  0%,100% { opacity: 0.3; }
+  50% { opacity: 1; }
+}
+
+/* ❤️ floating hearts */
+.heart-bg {
+  position: absolute;
+  bottom: -20px;
+  font-size: 16px;
+  opacity: 0.5;
+  animation: floatUp 8s linear infinite;
+}
+
+@keyframes floatUp {
+  from { transform: translateY(0); opacity: 0.6; }
+  to { transform: translateY(-100vh); opacity: 0; }
+}
+
+/* 🌙 moon */
+.moon {
+  position: absolute;
+  top: 60px;
+  right: 80px;
+  width: 90px;
+  height: 90px;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 0 40px rgba(255,255,255,0.6);
+  opacity: 0.9;
+}
+
+/* 💎 glass card */
+.container {
+  z-index: 5;
+  text-align: center;
+  padding: 55px 65px;
+  border-radius: 32px;
+  backdrop-filter: blur(20px);
+  background: rgba(255,255,255,0.12);
+  box-shadow: 0 40px 90px rgba(0,0,0,0.4);
+  max-width: 540px;
+  animation: fadeUp 1.4s ease;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 3rem;
+  margin-bottom: 12px;
+}
+
+p {
+  font-size: 1.2rem;
+  opacity: 0.9;
+}
+
+/* ❤️ heart button */
+.heart-btn {
+  margin: 45px auto 0;
+  width: 95px;
+  height: 95px;
+  background: #ff4d6d;
+  position: relative;
+  transform: rotate(-45deg);
+  cursor: pointer;
+  animation: pulse 1.6s infinite;
+}
+
+.heart-btn::before,
+.heart-btn::after {
+  content: "";
+  position: absolute;
+  width: 95px;
+  height: 95px;
+  background: #ff4d6d;
+  border-radius: 50%;
+}
+
+.heart-btn::before { top: -47px; left: 0; }
+.heart-btn::after { left: 47px; top: 0; }
+
+.heart-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(45deg);
+  font-family: 'Playfair Display', serif;
+  font-size: 0.95rem;
+  letter-spacing: 1px;
+}
+
+@keyframes pulse {
+  0% { transform: rotate(-45deg) scale(1); }
+  50% { transform: rotate(-45deg) scale(1.12); }
+  100% { transform: rotate(-45deg) scale(1); }
+}
+</style>
+</head>
+
+<body>
+
+<div class="moon"></div>
+
+<div class="container">
+  <h1 id="title">Hello</h1>
+  <p id="text">A soft beginning under quiet stars</p>
+
+  <div class="heart-btn" onclick="nextStep()">
+    <div class="heart-text" id="heartText">Feel</div>
+  </div>
+</div>
+
+<script>
+/* 🌌 stars */
+for (let i = 0; i < 120; i++) {
+  const star = document.createElement("div");
+  star.className = "star";
+  star.style.left = Math.random() * 100 + "vw";
+  star.style.top = Math.random() * 100 + "vh";
+  star.style.animationDelay = Math.random() * 3 + "s";
+  document.body.appendChild(star);
+}
+
+/* ❤️ floating hearts */
+setInterval(() => {
+  const heart = document.createElement("div");
+  heart.className = "heart-bg";
+  heart.innerHTML = "❤";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.fontSize = (12 + Math.random() * 14) + "px";
+  document.body.appendChild(heart);
+  setTimeout(() => heart.remove(), 8000);
+}, 600);
+
+/* 🎨 content + background per slide */
+let step = 0;
+
+const journey = [
+  {
+    title: "Hello",
+    text: "A soft beginning under quiet stars",
+    heart: "Feel",
+    bg: "radial-gradient(circle at top, #1b1f3b, #0b0d1a)"
+  },
+  {
+    title: "How are you?",
+    text: "A gentle question, whispered",
+    heart: "Breathe",
+    bg: "radial-gradient(circle at top, #243b55, #141e30)"
+  },
+  {
+    title: "I hope today is kind",
+    text: "Even moons need rest",
+    heart: "Slow",
+    bg: "radial-gradient(circle at top, #3a1c71, #0f0c29)"
+  },
+  {
+    title: "Let’s move softly",
+    text: "No rush, only presence",
+    heart: "Stay",
+    bg: "radial-gradient(circle at top, #134e5e, #071d26)"
+  },
+  {
+    title: "Friends feel like home",
+    text: "Warm even in silence",
+    heart: "Smile",
+    bg: "radial-gradient(circle at top, #42275a, #1f1c2c)"
+  },
+  {
+    title: "Love lives quietly",
+    text: "In small unseen moments",
+    heart: "Hold",
+    bg: "radial-gradient(circle at top, #8e2de2, #2b1055)"
+  },
+  {
+    title: "We grew gently",
+    text: "And that matters",
+    heart: "Thanks",
+    bg: "radial-gradient(circle at top, #355c7d, #1c1c3c)"
+  },
+  {
+    title: "Bye Bye 2025",
+    text: "Thank you for love, lessons & light ✨",
+    heart: "🌙",
+    bg: "radial-gradient(circle at top, #000428, #004e92)"
+  }
+];
+
+/* initial background */
+document.body.style.background = journey[0].bg;
+
+function nextStep() {
+  step++;
+  if (step >= journey.length) return;
+
+  document.getElementById("title").innerText = journey[step].title;
+  document.getElementById("text").innerText = journey[step].text;
+  document.getElementById("heartText").innerText = journey[step].heart;
+  document.body.style.background = journey[step].bg;
+}
+</script>
+
+</body>
+</html>
